@@ -18,6 +18,7 @@ TASK_CREATED_SUCCESSFULLY = "Task created successfully"
 TASK_UPDATED_SUCCESSFULLY = "Task deleted successfully"
 TASK_DELETED_SUCCESSFULLY = "Task deleted successfully"
 TASK_NOT_FOUND = "Task not found"
+TASK_ALREADY_EXITS ="Task with this title already exists"
 
 # Validation
 INVALID_PAYLOAD = "Invalid request payload"
