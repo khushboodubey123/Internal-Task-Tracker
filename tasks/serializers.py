@@ -2,13 +2,26 @@ from rest_framework import serializers
 from .models import Task
 
 class TaskCreateSerializer(serializers.ModelSerializer):
+    scan_part = serializers.CharField(
+        source='description',
+        required=False,
+        allow_blank=True,
+        allow_null=False  
+    )
+
+    title = serializers.CharField(
+        required=True,
+        allow_blank=False,
+        allow_null=False
+    )
+    
     class Meta:
         model = Task
         fields = [
             'title',
-            'description',
-            'status',
-            'assigned_to'
+            'scan_part',
+            'start_date',
+            'end_date'
         ]
         
 class TaskListSerializer(serializers.ModelSerializer):

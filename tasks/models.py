@@ -4,7 +4,6 @@ from resources.constant import STATUS_CHOICES,PENDING
 
 User = settings.AUTH_USER_MODEL
 
-
 class Task(models.Model):
 
     title = models.CharField(max_length=255)
@@ -26,6 +25,9 @@ class Task(models.Model):
         on_delete=models.CASCADE,
         related_name='created_tasks'
     )
+    
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
     is_deleted=models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

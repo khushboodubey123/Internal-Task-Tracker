@@ -5,12 +5,14 @@ ROLE_CHOICES = (
     (ROLE_MANAGER, 'Manager'),
     (ROLE_MEMBER, 'Member'),
 )
-PENDING = 'pending'
-STATUS_IN_PROGRESS = 'in_progress'
-STATUS_DONE = 'done'
+PENDING = 'PENDING'
+STATUS_IN_PROGRESS = 'IN_PROGRESS'
+STATUS_DONE = 'DONE'
+EXPIRED='EXPIRED'
 
 STATUS_CHOICES = (
-    (PENDING, 'pending'),
-    (STATUS_IN_PROGRESS, 'In Progress'),
-    (STATUS_DONE, 'Done'),
+    (PENDING, 'PENDING'),
+    (STATUS_IN_PROGRESS, 'IN_PROGRESS'),
+    (STATUS_DONE, 'DONE'),
+    (EXPIRED,'EXPIRED')
 )
