@@ -46,3 +46,19 @@ class TaskListSerializer(serializers.ModelSerializer):
             'created_at',
             'updated_at'
         ]
+
+class TaskStatusUpdateSerializer(serializers.Serializer):
+    task_id = serializers.IntegerField(required=True)
+    status = serializers.CharField(required=True, max_length=100)
+
+    def validate_task_id(self, value):
+        if not Task.objects.filter(id=value, is_deleted=False).exists():
+            raise serializers.ValidationError("Task with this ID does not exist.")
+        return value
+
+    def update(self, instance, validated_data, updated_by=None):
+        instance.status = validated_data.get('status', instance.status)
+        if updated_by:
+            instance.updated_by = updated_by
+        instance.save()  
+        return instance    

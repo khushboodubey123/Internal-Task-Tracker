@@ -9,21 +9,20 @@ logger = logging.getLogger(__name__)
 
 def expire_tasks_cron():
 
-    now = timezone.now()
+    now = timezone.now().date()
     expired_count = Task.objects.filter(
         end_date__lt=now,
         status__in=[PENDING, STATUS_IN_PROGRESS]
     ).update(status=EXPIRED)
-    
+   
     logger.info(f"Scheduler ran: {expired_count} tasks expired.")
-    print(f"Scheduler ran: {expired_count} tasks expired.")
 
 def task_expire_scheduler():
     logger.info("::::::::::::::::::: Task Expire Scheduler Started :::::::::::::::::::")
     
     scheduler = BackgroundScheduler()
     scheduler.start()   
-    # scheduler.add_job(expire_tasks_cron, 'cron', hour=0, minute=0)
-    scheduler.add_job(expire_tasks_cron,'interval',seconds=5)
-    
+    scheduler.add_job(expire_tasks_cron, 'cron', hour=0, minute=0)
 
+    
+    

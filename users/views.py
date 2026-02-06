@@ -9,12 +9,13 @@ from resources.message import (
 )
 from rest_framework.permissions import AllowAny
 from .models import User
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def create_user(request):
     serializer = UserCreateSerializer(data=request.data)
-
     if not serializer.is_valid():
         return generate_response(
             BAD_REQUEST_CODE,
@@ -48,3 +49,7 @@ def user_list(request):
             INTERNAL_SERVER_ERROR,
             error_message=str(e)
         )
+    
+ 
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer   
